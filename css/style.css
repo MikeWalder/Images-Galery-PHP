@@ -1,0 +1,12 @@
+.offcanvas-body > .navbar-nav .nav-item:hover {
+  color: blue;
+}
+
+.navbar-nav .navbar-link:hover {
+  color: blue;
+  transition: all 0.4s;
+}
+
+.hovernavlink:hover {
+  color: red;
+}
