@@ -1,3 +1,8 @@
+body {
+  background: no-repeat url("content/font1.jpeg");
+  background-position: center;
+}
+
 .offcanvas-body > .navbar-nav .nav-item:hover {
   color: blue;
 }
@@ -8,5 +13,9 @@
 }
 
 .hovernavlink:hover {
+  color: red;
+}
+
+h1 {
   color: red;
 }
