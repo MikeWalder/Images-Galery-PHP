@@ -17,6 +17,9 @@ require_once('header.php');
             <div class="mt-5">
                 <input class="form-control" type="file" id="formFile" name="fileImgData" accept="image/*">
             </div>
+            <div class="mt-3">
+                <textarea class="form-control" id="description" name="description" value="" rows="3" placeholder="Description (optional)"></textarea>
+            </div>
             <div class="d-grid gap-2 col-8 mx-auto mt-5">
                 <button type="submit" class="btn btn-success btn-block btn-lg">Confirm</button>
             </div>
@@ -27,28 +30,24 @@ require_once('header.php');
 
 <?php
 if (isset($_FILES['fileImgData'])) {
+    $descr = htmlspecialchars($_POST['description']);
     $fileSize = round($_FILES['fileImgData']['size'] / 1000, 2);
     $fileNameExtension = explode('.', $_FILES['fileImgData']['name']);
     $nameOfFile = $fileNameExtension[0];
-    $currentPath =  __DIR__ . DIRECTORY_SEPARATOR . $_FILES['fileImgData']['name'];
+
     $extension = $fileNameExtension[1];
     $fileToUpload = $nameOfFile . "." . $extension;
-    echo $fileToUpload;
 
     if ($extension === 'jpg' || $extension === 'jpeg' || $extension === 'png' || $extension === 'gif' || $extension === 'GIF' || $extension === 'svg') {
         if ($fileSize <= 1000) {
-            $descr = "Une simple image";
             $favorite = false;
-
-            //$imageLoad = copy($currentPath, 'C:\wamp64\www\wf3\bdd\Images-Galery-PHP\img' . $fileNameExtension);
-            $infosFile = pathinfo($fileToUpload);
-            //echo "<h1>" . $infosFile . "</h1>";
+            // $infosFile = pathinfo($fileToUpload);
             $nameImg = $_FILES['fileImgData']['tmp_name'];
-            echo $nameImg;
+
+            // select the uploaded file and add it into the selected destination
             move_uploaded_file($nameImg, "img/" . $fileToUpload);
-            if (move_uploaded_file($nameImg, "img/" . $fileToUpload)) {
-                echo "<h1>OK !!!</h1>";
-            }
+
+            // call a funvction to add the file datas into the BDD
             addToTable($nameOfFile, $descr, $extension, $fileSize, $favorite);
         } else if ($fileSize > 1000) {
             $txt = "<div class='container'>

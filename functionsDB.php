@@ -45,9 +45,6 @@ function addToTable($name, $descr, $format, $size, $favorite)
     $descr = htmlspecialchars($descr);
     $favorite = 0;
 
-    $target_dir = "img/";
-    //$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-
     $pdo = connexionDB();
     $request = $pdo->prepare('INSERT INTO tabimages (nameImg, descr, format, size, favorite) VALUES (:nameImg, :descr, :format, :size, :favorite)');
     $request->execute(array(
