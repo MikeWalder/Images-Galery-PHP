@@ -1,0 +1,4 @@
+body {
+  background: no-repeat fixed left url("content/font1.jpeg"),
+    no-repeat fixed right url("content/font1.jpeg");
+}
