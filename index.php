@@ -7,7 +7,7 @@ require_once('header.php');
 </style>
 
 <br><br>
-<div class="h1 display-4 fw-bold text-center pt-5">Add an image</div>
+<div class="h1 display-4 fw-bold text-center pt-5 animate__animated animate__fadeInDown">Add an image</div>
 
 <div class="container">
     <div class="row">
@@ -15,12 +15,12 @@ require_once('header.php');
         <!-- Default file input example  within the main form -->
         <form class="col-6" method="POST" enctype="multipart/form-data">
             <div class="mt-5">
-                <input class="form-control" type="file" id="formFile" name="fileImgData" accept="image/*">
+                <input class="form-control animate__animated animate__fadeInDown animate__delay-1s" type="file" id="formFile" name="fileImgData" accept="image/*">
             </div>
             <div class="mt-3">
-                <textarea class="form-control" id="description" name="description" value="" rows="3" placeholder="Description (optional)"></textarea>
+                <textarea class="form-control animate__animated animate__fadeInDown animate__delay-1s" id="description" name="description" value="" rows="3" placeholder="Description (optional)"></textarea>
             </div>
-            <div class="d-grid gap-2 col-8 mx-auto mt-5">
+            <div class="d-grid gap-2 col-8 mx-auto mt-5  animate__animated animate__fadeInDown animate__delay-1s">
                 <button type="submit" class="btn btn-success btn-block btn-lg">Confirm</button>
             </div>
         </form>

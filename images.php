@@ -8,11 +8,14 @@ require_once('header.php');
 
 <br><br><br>
 
-<div class="h1 display-4 fw-bold text-center pt-5">Images</div>
+<div class="h1 display-4 fw-bold text-center pt-5 animate__animated animate__fadeInDown">Images</div>
 
 <div class="container-fluid">
     <div class="row">
-        <?php selectAllTable(); ?>
+        <?php
+        $datas = selectAllTable();
+        displayImagesIntoCards($datas);
+        ?>
     </div>
 </div>
 

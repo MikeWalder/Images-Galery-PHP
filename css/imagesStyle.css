@@ -1,4 +1,34 @@
-body {
+/* body {
   background: no-repeat url("content/font1.jpeg");
   background-position: center;
+} */
+
+.card {
+  padding: 0px;
+  margin: 0px;
+  height: 400px;
+}
+
+.card:hover {
+  filter: grayscale(50%);
+}
+
+.card-body {
+  position: relative;
+  bottom: -100px;
+  background-color: rgba(255, 255, 128, 0.5);
+  color: black;
+  opacity: 0;
+  transition: all 0.4s;
+  height: 100px;
+}
+
+.card:hover .card-body {
+  display: block;
+  transform: translateY(-100px);
+  opacity: 1;
+}
+
+.card-img-top {
+  object-fit: cover;
 }

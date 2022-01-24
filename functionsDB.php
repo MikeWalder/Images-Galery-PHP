@@ -17,24 +17,7 @@ function selectAllTable()
 {
     $pdo = connexionDB();
     $answer = $pdo->query("SELECT * FROM tabimages order by id DESC");
-?>
-    <table class="table table-bordered">
-        <?php
-        while ($q = $answer->fetch()) {
-        ?>
-
-            <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-3 border-secondary" style="height: 250px;">
-                <img src="img/<?= $q['nameImg'] . "." . $q['format'] ?>" class="card-img-top img-fluid text-center" alt="<?= $q['descr'] ?>" style="height: 200px;">
-                <div class="card-body text-center">
-                    <h5 class="card-title"><?= $q['nameImg'] . "." . $q['format'] ?></h5>
-                </div>
-            </div>
-
-        <?php
-        }
-        ?>
-    </table>
-<?php
+    return $answer;
 }
 
 
@@ -126,4 +109,30 @@ function checkCurrentRepertory()
     // echo "<div class='h1 alert alert-info text-center fw-bold mt-3'>" . $currentFileDirectory . "</div>";
 
     return $currentFileDirectoryName;
+}
+
+
+
+function displayImagesIntoCards($data)
+{
+?>
+    <table class="table table-bordered">
+        <?php
+        while ($q = $data->fetch()) {
+        ?>
+
+            <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-3 border-secondary" style="">
+                <img src="img/<?= $q['nameImg'] . "." . $q['format'] ?>" class="card-img-top img-fluid text-center" alt="<?= $q['descr'] ?>" style="height: 300px;">
+                <div class="card-body text-center bg-secondary">
+                    <h5 class="card-title"><?= $q['descr'] ? $q['descr'] : $q['nameImg'] ?></h5>
+                    <a href="images.php?m=<?= $q['id'] ?>" class="btn btn-warning" title="Modify"><i class="fas fa-edit"></i></a>
+                    <a href="images.php?m=<?= $q['id'] ?>" class="btn btn-danger" title="Delete"><i class="far fa-trash-alt"></i></a>
+                </div>
+            </div>
+
+        <?php
+        }
+        ?>
+    </table>
+<?php
 }
