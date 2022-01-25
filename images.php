@@ -66,13 +66,12 @@ require_once('header.php');
             <div class="row">
                 <?php
                 if (isset($_POST['validation'])) {
-                    $formatImage = $_POST['imageFormat'];
+                    $formatImage = htmlspecialchars($_POST['imageFormat']);
                     if ($formatImage === "*") {
                         $datas = selectAllTable();
                         displayImagesIntoCards($datas);
                     } else if ($formatImage !== "*") {
-                        $datas = selectImageFormatFromTable($formatImage);
-                        displayImagesIntoCards($datas);
+                        selectImageFormatFromTable($formatImage);
                     }
                 }
                 ?>

@@ -83,12 +83,12 @@ function selectImageFormatFromTable($format)
         selectAllTable();
     } else if ($format !== "*") {
         $pdo = connexionDB();
-        $request = $pdo->query("SELECT * FROM tabimages WHERE format = ':format' ORDER BY id DESC");
+        $request = $pdo->query("SELECT * FROM tabimages WHERE format='" . $format . "' ORDER BY id DESC");
         $request->execute(array(
             'format' => $format
         ));
         //$datas = $request->fetchAll();
-        return $request;
+        displayImagesIntoCards($request);
     }
 }
 
@@ -123,7 +123,6 @@ function checkCurrentRepertory()
     $currentFileDirectory = explode('.', $rep_struct[$size_rep_struct - 1]);
     $currentFileDirectoryName = $currentFileDirectory[0];
     // echo "<div class='h1 alert alert-info text-center fw-bold mt-3'>" . $currentFileDirectory . "</div>";
-
     return $currentFileDirectoryName;
 }
 
@@ -135,18 +134,21 @@ function displayImagesIntoCards($data)
     <table class="table table-bordered">
         <?php
         while ($q = $data->fetch()) {
+
+            if (sizeof($q) > 0) {
         ?>
-            <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 border-secondary" style="height: 300px;">
-                <div class="wrapper text-center bg-secondary border" style="height: 300px;">
-                    <img src="img/<?= $q['nameImg'] . "." . $q['format'] ?>" class="card-img-top img-fluid text-center" alt="<?= $q['descr'] ?>" style="height: 300px;">
-                    <div class="card-body">
-                        <h6 class="card-title text-white fw-bold"><?= $q['descr'] ? $q['descr'] : $q['nameImg'] ?></h6>
-                        <a href="images.php?m=<?= $q['id'] ?>" class="btn btn-warning btn-lg me-1" title="Modify"><i class="fas fa-edit"></i></a>
-                        <a href="images.php?r=<?= $q['id'] ?>" class="btn btn-danger btn-lg ms-2 me-1" title="Delete"><i class="fas fa-trash-alt fa-lg"></i></a>
+                <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 border-secondary" style="height: 300px;">
+                    <div class="wrapper text-center bg-secondary border" style="height: 300px;">
+                        <img src="img/<?= $q['nameImg'] . "." . $q['format'] ?>" class="card-img-top img-fluid text-center" alt="<?= $q['descr'] ?>" style="height: 300px;">
+                        <div class="card-body">
+                            <h6 class="card-title text-white fw-bold"><?= $q['descr'] ? $q['descr'] : $q['nameImg'] ?></h6>
+                            <a href="images.php?m=<?= $q['id'] ?>" class="btn btn-warning btn-lg me-1" title="Modify"><i class="fas fa-edit"></i></a>
+                            <a href="images.php?r=<?= $q['id'] ?>" class="btn btn-danger btn-lg ms-2 me-1" title="Delete"><i class="fas fa-trash-alt fa-lg"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
         <?php
+            }
         }
         ?>
     </table>
