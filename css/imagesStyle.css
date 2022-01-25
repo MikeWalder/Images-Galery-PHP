@@ -1,12 +1,22 @@
-/* body {
-  background: no-repeat url("content/font1.jpeg");
-  background-position: center;
-} */
+body {
+  background: no-repeat fixed center url("content/font2.jpg");
+}
 
+/* Form image type selection */
+#btnHoverEffect {
+  transition: all 0.4s ease-in-out;
+}
+
+#btnHoverEffect:hover {
+  transform: scale(1.1);
+  text-decoration: underline;
+}
+
+/* Images displaying section  */
 .card {
   padding: 0px;
   margin: 0px;
-  height: 400px;
+  transition: all 0.4s;
 }
 
 .card:hover {
@@ -15,18 +25,42 @@
 
 .card-body {
   position: relative;
-  bottom: -100px;
-  background-color: rgba(255, 255, 128, 0.5);
+  bottom: 100px;
+  background-color: rgba(71, 71, 71, 0.8);
   color: black;
   opacity: 0;
   transition: all 0.4s;
   height: 100px;
 }
 
-.card:hover .card-body {
+.wrapper:hover .card-body {
   display: block;
-  transform: translateY(-100px);
   opacity: 1;
+}
+
+.wrapper:hover .card-body a:hover {
+  filter: saturate(200%);
+  transform: scale(1.08);
+}
+
+.wrapper:hover .card-body a i {
+  color: black;
+}
+
+.wrapper:hover .card-body a:hover i {
+  color: white;
+}
+
+.wrapper {
+  overflow: hidden;
+}
+
+.wrapper img {
+  transition: transform 0.4s ease-in-out;
+}
+
+.wrapper:hover img {
+  transform: scale(1.1);
 }
 
 .card-img-top {

@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!-- Links to use Font Awesome icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="css/headerStyle.css" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,8 +58,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <a class=" fw-bold navbar-brand animate__animated animate__slideInRight" href="index.php">
-                <img src="content/logo<?= ($directory !== 'configuration' ? '1.png' : '2.png') ?>" alt="Website logo" width="30" height="30" class="d-inline-block align-text-top me-3">
+            <a class="fw-bold navbar-brand d-none d-md-block animate__animated animate__slideInRight" id="titleNavigation" href="index.php">
+                <img src="content/logo<?= ($directory !== 'configuration' ? '1.png' : '2.png') ?>" alt="<?= ($directory !== 'configuration' ? 'Image Gallery Icon' : 'Configuration Icon') ?>" width="30" height="30" class="d-inline-block align-text-top me-3">
                 <?= ($directory !== 'configuration' ? 'Image Gallery' : 'Configuration') ?>
             </a>
 

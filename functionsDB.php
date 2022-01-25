@@ -41,7 +41,7 @@ function addToTable($name, $descr, $format, $size, $favorite)
     $txt = "<div class='container mt-3'>
             <div class='row'>
                 <div class='col-md-2'></div>
-                <div class='col-md-8 text-center alert alert-info animate__animated animate__fadeOut animate__delay-2s'>
+                <div class='col-md-8 text-center alert alert-info animate__animated animate__fadeOut animate__delay-3s'>
                     Image has been added into database
                 </div>
                 <div class='col-md-2'></div>
@@ -51,7 +51,7 @@ function addToTable($name, $descr, $format, $size, $favorite)
     $txt .= "<div class='container'>
         <div class='row'>
             <div class='col-md-2'></div>
-            <div class='col-md-8 alert alert-success text-center fw-bold mt-3 animate__animated animate__fadeOut animate__delay-2s'>
+            <div class='col-md-8 alert alert-success text-center fw-bold mt-3 animate__animated animate__fadeOut animate__delay-3s'>
                 Extension : " . $format . "<br>
                 File name : " . $name . "<br> 
                 Size : " . $size . " ko<br>
@@ -68,12 +68,28 @@ function modifIntoTable($identification)
 {
     $id = (int)$identification;
     $pdo = connexionDB();
-    $request = $pdo->prepare('SELECT * FROM tabimages WHERE id = :id');
-    $request->execute(array(
+    $answer = $pdo->query("SELECT * FROM tabimages WHERE id = ':id'");
+    $answer->execute(array(
         'id' => $id
     ));
-    $datas = $request->fetch();
-    return $datas;
+    return $answer;
+}
+
+
+
+function selectImageFormatFromTable($format)
+{
+    if ($format === "*") {
+        selectAllTable();
+    } else if ($format !== "*") {
+        $pdo = connexionDB();
+        $request = $pdo->query("SELECT * FROM tabimages WHERE format = ':format' ORDER BY id DESC");
+        $request->execute(array(
+            'format' => $format
+        ));
+        //$datas = $request->fetchAll();
+        return $request;
+    }
 }
 
 
@@ -120,16 +136,16 @@ function displayImagesIntoCards($data)
         <?php
         while ($q = $data->fetch()) {
         ?>
-
-            <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-3 border-secondary" style="">
-                <img src="img/<?= $q['nameImg'] . "." . $q['format'] ?>" class="card-img-top img-fluid text-center" alt="<?= $q['descr'] ?>" style="height: 300px;">
-                <div class="card-body text-center bg-secondary">
-                    <h5 class="card-title"><?= $q['descr'] ? $q['descr'] : $q['nameImg'] ?></h5>
-                    <a href="images.php?m=<?= $q['id'] ?>" class="btn btn-warning" title="Modify"><i class="fas fa-edit"></i></a>
-                    <a href="images.php?m=<?= $q['id'] ?>" class="btn btn-danger" title="Delete"><i class="far fa-trash-alt"></i></a>
+            <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 border-secondary" style="height: 300px;">
+                <div class="wrapper text-center bg-secondary border" style="height: 300px;">
+                    <img src="img/<?= $q['nameImg'] . "." . $q['format'] ?>" class="card-img-top img-fluid text-center" alt="<?= $q['descr'] ?>" style="height: 300px;">
+                    <div class="card-body">
+                        <h6 class="card-title text-white fw-bold"><?= $q['descr'] ? $q['descr'] : $q['nameImg'] ?></h6>
+                        <a href="images.php?m=<?= $q['id'] ?>" class="btn btn-warning btn-lg me-1" title="Modify"><i class="fas fa-edit"></i></a>
+                        <a href="images.php?r=<?= $q['id'] ?>" class="btn btn-danger btn-lg ms-2 me-1" title="Delete"><i class="fas fa-trash-alt fa-lg"></i></a>
+                    </div>
                 </div>
             </div>
-
         <?php
         }
         ?>
