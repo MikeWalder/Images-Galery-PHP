@@ -8,7 +8,7 @@ require_once('header.php');
 
 <br><br><br>
 
-<div class="h1 display-4 fw-bold text-center pt-5 animate__animated animate__fadeIn">Images</div>
+<div class="h1 display-4 fw-bold text-center pt-5 animate__animated animate__fadeIn">Image library</div>
 
 <div class="container mt-4">
     <div class="row">
@@ -67,12 +67,7 @@ require_once('header.php');
                 <?php
                 if (isset($_POST['validation'])) {
                     $formatImage = htmlspecialchars($_POST['imageFormat']);
-                    if ($formatImage === "*") {
-                        $datas = selectAllTable();
-                        displayImagesIntoCards($datas);
-                    } else if ($formatImage !== "*") {
-                        selectImageFormatFromTable($formatImage);
-                    }
+                    selectImageFormatFromTable($formatImage);
                 }
                 ?>
             </div>

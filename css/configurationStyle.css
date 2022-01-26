@@ -1,3 +1,8 @@
 body {
   background: no-repeat fixed center url("content/font2.jpg");
 }
+
+#myChart {
+  height: 200px;
+  width: 200px;
+}

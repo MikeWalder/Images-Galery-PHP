@@ -80,14 +80,20 @@ function modifIntoTable($identification)
 function selectImageFormatFromTable($format)
 {
     if ($format === "*") {
-        selectAllTable();
+        // selectAllTable();
+        $datas = selectAllTable();
+        $count = $datas->rowCount();
+        displayNumberOfResults($count);
+        displayImagesIntoCards($datas);
     } else if ($format !== "*") {
         $pdo = connexionDB();
         $request = $pdo->query("SELECT * FROM tabimages WHERE format='" . $format . "' ORDER BY id DESC");
         $request->execute(array(
             'format' => $format
         ));
+        $count = $request->rowCount();
         //$datas = $request->fetchAll();
+        displayNumberOfResults($count);
         displayImagesIntoCards($request);
     }
 }
@@ -134,7 +140,6 @@ function displayImagesIntoCards($data)
     <table class="table table-bordered">
         <?php
         while ($q = $data->fetch()) {
-
             if (sizeof($q) > 0) {
         ?>
                 <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 border-secondary" style="height: 300px;">
@@ -153,4 +158,12 @@ function displayImagesIntoCards($data)
         ?>
     </table>
 <?php
+}
+
+
+function displayNumberOfResults($count)
+{
+    $count <= 1 ? $multi = "" : $multi = "s";
+    echo "<div class='mt-md-2 mb-md-3 text-center fw-bold h4 animate__animated animate__fadeIn animate__delay-1s'>" . $count . " result" . $multi . "</div>";
+    //echo "<div class='mt-3 text-center fw-bold h4 animate__animated animate__fadeIn animate__delay-1s'>" . sizeof($arrayData) . "résultats</div>";
 }

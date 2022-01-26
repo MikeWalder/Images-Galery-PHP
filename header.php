@@ -6,8 +6,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Animate CSS library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <!-- Links to use Font Awesome icons -->
+    <!-- Font Awesome icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
     <!-- Header CSS -->
     <link rel="stylesheet" href="css/headerStyle.css" />
     <meta charset="UTF-8">
@@ -28,7 +30,7 @@
             <div class="offcanvas offcanvas-start <?= ($directory !== 'configuration' ? 'bg-secondary' : 'bg-info') ?> text-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
 
-                    <a class="navbar-brand text-white fw-bold me-3" href="index.php">
+                    <a class="navbar-brand text-white fw-bold me-3" href="<?= ($directory !== 'configuration' ? 'index.php' : 'configuration.php') ?>">
                         <img src="content/logo<?= ($directory !== 'configuration' ? '1.png' : '2.png') ?>" alt="" width="30" height="30" class="d-inline-block align-text-top text-white h3">
                         <?= ($directory !== 'configuration' ? 'Image Gallery' : 'Configuration') ?>
                     </a>
@@ -58,7 +60,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <a class="fw-bold navbar-brand d-none d-md-block animate__animated animate__slideInRight" id="titleNavigation" href="index.php">
+            <a class="fw-bold navbar-brand d-none d-md-block animate__animated animate__slideInRight" id="titleNavigation" href="<?= ($directory !== 'configuration' ? 'index.php' : 'configuration.php') ?>">
                 <img src="content/logo<?= ($directory !== 'configuration' ? '1.png' : '2.png') ?>" alt="<?= ($directory !== 'configuration' ? 'Image Gallery Icon' : 'Configuration Icon') ?>" width="30" height="30" class="d-inline-block align-text-top me-3">
                 <?= ($directory !== 'configuration' ? 'Image Gallery' : 'Configuration') ?>
             </a>
