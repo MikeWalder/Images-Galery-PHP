@@ -22,11 +22,60 @@ function selectAllTable()
 
 
 
+function selectTabDataImageTypes()
+{
+    $pdo = connexionDB();
+
+    $countJpg = $countJpeg = $countPng = $countGif = $countSvg = 0;
+    $req = $pdo->query("SELECT format FROM tabimages");
+    foreach ($req as $row) {
+        $monTableauToutBeau[] = $row;
+    }
+    // echo count($monTableauToutBeau);
+    for ($i = 0; $i < count($monTableauToutBeau); $i++) {
+        switch ($monTableauToutBeau[$i]['format']) {
+            case 'jpg':
+                $countJpg++;
+                break;
+            case 'jpeg':
+                $countJpeg++;
+                break;
+            case 'png':
+                $countPng++;
+                break;
+            case 'gif':
+                $countGif++;
+                break;
+            case 'svg':
+                $countSvg++;
+                break;
+        }
+    }
+    $countAll = $countJpg + $countJpeg + $countPng + $countGif + $countSvg;
+    // $tabCount = [$countAll, $countJpg, $countJpeg, $countPng, $countGif, $countSvg];
+    $tabCount = [
+        'all' => $countAll,
+        'jpg' => $countJpg,
+        'jpeg' => $countJpeg,
+        'png' => $countPng,
+        'gif' => $countPng,
+        'svg' => $countSvg
+    ];
+
+    return $tabCount;
+
+    // print_r($monTableauToutBeau[0]['format']);
+
+    // $monTableauToutBeauEnJson = json_encode($monTableauToutBeau);
+}
+
+
+
 function addToTable($name, $descr, $format, $size, $favorite)
 {
     $name = htmlspecialchars($name);
     $descr = htmlspecialchars($descr);
-    $favorite = 0;
+    $favorite === true ? $favorite = 1 : $favorite = 0;
 
     $pdo = connexionDB();
     $request = $pdo->prepare('INSERT INTO tabimages (nameImg, descr, format, size, favorite) VALUES (:nameImg, :descr, :format, :size, :favorite)');
@@ -64,15 +113,15 @@ function addToTable($name, $descr, $format, $size, $favorite)
 
 
 
-function modifIntoTable($identification)
+function modifIntoTable($id)
 {
-    $id = (int)$identification;
     $pdo = connexionDB();
-    $answer = $pdo->query("SELECT * FROM tabimages WHERE id = ':id'");
+    $answer = $pdo->prepare("SELECT * FROM tabimages WHERE id = :id");
     $answer->execute(array(
         'id' => $id
     ));
-    return $answer;
+    $data = $answer->fetch();
+    return $data;
 }
 
 
@@ -92,7 +141,7 @@ function selectImageFormatFromTable($format)
             'format' => $format
         ));
         $count = $request->rowCount();
-        //$datas = $request->fetchAll();
+
         displayNumberOfResults($count);
         displayImagesIntoCards($request);
     }
@@ -102,21 +151,26 @@ function selectImageFormatFromTable($format)
 
 function deleteFromTableById($identification)
 {
-    $id = (int)$identification;
     $pdo = connexionDB();
     $request = $pdo->prepare('DELETE FROM tabimages WHERE id = :id');
     $request->execute(array(
-        'id' => $id
+        'id' => $identification
     ));
+
     echo "<div class='container mt-3'>
             <div class='row'>
-                <div class='col-md-2'></div>
-                <div class='col-md-8 text-center alert alert-info'>
-                    L'image a bien été supprimée !
+                <div class='col-12 text-center'>
+                    <div class='alert alert-warning h3 animate__animated animate__fadeOut animate__delay-2s' role='alert'>
+                    <i class='far fa-check-circle pr-3'></i>
+                        La tâche a bien été supprimée !
+                    </div>
                 </div>
-                <div class='col-md-2'></div>
             </div>
         </div>";
+
+    echo "<script>
+    setTimeout(redirection(), 3000);
+    </script>";
 }
 
 

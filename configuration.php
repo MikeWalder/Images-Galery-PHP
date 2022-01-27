@@ -8,6 +8,8 @@ require_once('header.php');
 
 <br><br><br>
 <?php
+
+$tabImageTypes = selectTabDataImageTypes();
 ?>
 
 <div class="h1 display-4 fw-bold text-center pt-5 animate__animated animate__fadeIn">Dashboard</div>
@@ -16,12 +18,18 @@ require_once('header.php');
 
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-12 col-md-10">
-            <div class="alert alert-dark text-center mt-5">Configuration environment (in progress)</div>
+        <div class="col-12 col-md-10 mt-3">
+            <!-- <div class="alert alert-dark text-center mt-5">Configuration environment (in progress)</div> -->
             <div class="row">
-                <div class="col-8 bg-secondary"></div>
-                <div class="col-4 bg-light">
-                    <canvas id="myChart" width="400px" height="400px"></canvas>
+                <div class="col-7 bg-light text-white">
+
+                </div>
+                <div class="card col-4 ms-5 bg-light img-fluid">
+                    <div class="card-header">
+                        <div class="card-title h5 fw-bold">Image types</div>
+                    </div>
+
+                    <canvas id="myChart"></canvas>
                     <script>
                         const ctx = document.getElementById('myChart').getContext('2d');
                         const myChart = new Chart(ctx, {
@@ -29,8 +37,15 @@ require_once('header.php');
                             data: {
                                 labels: ['All', 'JPG', 'JPEG', 'PNG', 'GIF', 'SVG'],
                                 datasets: [{
-                                    label: '# of Votes',
-                                    data: [12, 19, 3, 5, 2, 3],
+                                    label: 'Image extension',
+                                    data: [
+                                        <?= $tabImageTypes['all'] ?>,
+                                        <?= $tabImageTypes['jpg'] ?>,
+                                        <?= $tabImageTypes['jpeg'] ?>,
+                                        <?= $tabImageTypes['png'] ?>,
+                                        <?= $tabImageTypes['gif'] ?>,
+                                        <?= $tabImageTypes['svg'] ?>
+                                    ],
                                     backgroundColor: [
                                         'rgba(255, 99, 132, 0.8)',
                                         'rgba(54, 162, 235, 0.8)',
@@ -53,7 +68,7 @@ require_once('header.php');
                             options: {
                                 plugins: {
                                     title: {
-                                        display: true,
+                                        display: false,
                                         text: 'Image types'
                                     }
                                 },
@@ -71,6 +86,13 @@ require_once('header.php');
         <div class="col-md-1"></div>
     </div>
 </div>
+<?php
+$variableAPasser = "Bonjour je teste juste le passage de PHP à JS";
+?>
+<script>
+    let variableRecuperee = <?= json_encode($variableAPasser); ?>;
+    console.log(variableRecuperee);
+</script>
 
 <?php
 require_once('footer.php');

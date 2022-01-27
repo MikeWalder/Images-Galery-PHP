@@ -37,7 +37,7 @@ require_once('header.php');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_FILES['fileImgData']) && !empty($_FILES['fileImgData']['error'] === 0)) {
         $descr = htmlspecialchars($_POST['description']);
-        isset($_POST['favorite']) ? $favorite = 'true' : $favorite = 'false';
+        isset($_POST['favorite']) ? $favorite = true : $favorite = false;
         //$favorite = htmlspecialchars($_POST['favorite']);
         //echo "<h1>" . $favorite . "</h1>";
         $fileSize = round($_FILES['fileImgData']['size'] / 1000, 2);
