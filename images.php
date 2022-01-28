@@ -8,7 +8,10 @@ require_once('header.php');
 
 <br><br><br>
 
-<div class="h1 display-4 fw-bold text-center pt-5 animate__animated animate__fadeIn">Image library</div>
+<div class="h1 display-4 fw-bold text-center pt-5 animate__animated animate__fadeIn">
+    <?=
+    !isset($_GET['m']) ? 'Image library' : 'Image modification'
+    ?></div>
 
 <?php
 if (!isset($_GET['m'])) {
@@ -16,7 +19,7 @@ if (!isset($_GET['m'])) {
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-3"></div>
-            <div class="col-md-6 text-center">
+            <div class="col-md-6 text-center mt-3">
                 <form method="POST" action="images.php">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="radio" name="imageFormat" id="formatAll" value="*" checked>
@@ -55,7 +58,7 @@ if (!isset($_GET['m'])) {
                         </label>
                     </div>
                     <input type="hidden" name="validation">
-                    <button type="submit" class="col-6 btn btn-success btn-block fw-bold shadow mt-4" id="btnHoverEffect">Confirm</button>
+                    <button type="submit" class="col-6 btn btn-success btn-block fw-bold shadow mt-5" id="btnHoverEffect">Confirm</button>
                 </form>
             </div>
             <div class="col-md-3"></div>
@@ -94,14 +97,14 @@ if (isset($_GET['m']) && $_GET['m'] > 0) {
 
     $nameImg = $datasImg['nameImg'];
     $descr = $datasImg['descr'];
-    $favorite = $datasImg['favorite'];
+    $favorite = (int)$datasImg['favorite'];
     $format = $datasImg['format'];
 ?>
     <div class="container">
         <div class="row">
-            <div class="col-1 col-sm-2 col-md-3"></div>
-            <div class="col-10 col-sm-8 col-md-6">
-                <div class="card border-secondary" style="height: 300px;">
+            <div class="col-1 col-sm-2 col-md-4"></div>
+            <div class="col-10 col-sm-8 col-md-4">
+                <div class="card border-secondary animate__animated animate__fadeIn" style="height: 300px;">
                     <div class="wrapper text-center bg-secondary border" style="height: 300px;">
                         <img src="img/<?= $datasImg['nameImg'] . "." . $datasImg['format'] ?>" class="card-img-top img-fluid text-center" alt="<?= $datasImg['descr'] ?>" style="height: 300px;">
                         <div class="card-body">
@@ -111,32 +114,40 @@ if (isset($_GET['m']) && $_GET['m'] > 0) {
                     </div>
                 </div>
             </div>
-            <div class="col-1 col-sm-2 col-md-3"></div>
+            <div class="col-1 col-sm-2 col-md-4"></div>
         </div>
     </div>
     <form action="" method="POST">
         <div class="container mt-4">
             <div class="row">
-                <div class="col-1 col-md-3"></div>
-                <div class="col-10 col-md-6 bg-secondary rounded">
+                <div class="col-1 col-md-2"></div>
+                <div class="col-10 col-md-8 bg-secondary rounded animate__animated animate__fadeIn">
+                    <!-- <div class="form-group row mt-3 p-0 nameImgForm">
+                        <label for="nameImg" class="col-2 col-form-label fw-bold h4 text-white">Name : </label>
+                        <input type="text" name="nameImg" class="form-control-text shadow bg-light col-8 pe-3" placeholder="<?php //$nameImg 
+                                                                                                                            ?>">
+                    </div> -->
                     <div class="form-group row mt-3">
-                        <label for="nameImg" class="col-3 col-form-label font-weight-bold h4">Nom : </label>
-                        <input type="text" name="nameImg" class="form-control-text shadow bg-light col-6 pl-2" placeholder="<?= $nameImg ?>">
+                        <label for="description" class="col-2 col-form-label fw-bold h4 text-white">Description : </label>
+                        <!-- <input type="textarea" name="description" class="form-control-text shadow bg-light col-6 pl-2" placeholder=""> -->
+                        <div class="col-8">
+                            <textarea class="form-control col-6" id="description" name="description" value="" rows="3" placeholder="<?= $descr ?>"></textarea>
+                        </div>
                     </div>
-                    <div class="form-group row mt-3">
-                        <label for="description" class="col-3 col-form-label font-weight-bold h4">Description : </label>
-                        <input type="text" name="description" class="form-control-text shadow bg-light col-6 pl-2" placeholder="<?= $descr ?>">
-                    </div>
-                    <div class="form-group row mt-3">
-                        <label for="favorite" class="col-3 col-form-label font-weight-bold h4">Favorite : </label>
-                        <input type="text" name="favorite" class="form-control-text shadow bg-light col-6 pl-2" placeholder="<?= $favorite ?>">
+                    <div class="text-center row mt-3">
+                        <div class="col-5"></div>
+                        <input type="checkbox" class="btn-check mt-3" name="favorite" id="favo">
+                        <label class="col-2 btn btn-outline-primary text-white fw-bold h4" for="favo" id="favoriteSelection">
+                            <?= $favorite == 1 ? "<i class='fas fa-heart fa-lg' style='color: red;'></i>" : "<i class='fas fa-heart-broken' style='color: red;'></i>" ?>
+                        </label>
                     </div>
                     <input type="hidden" name="validateModification">
-                    <div class="mx-auto">
-                        <button type="submit" class="col-4 btn btn-warning my-4">Modifier</button>
+                    <div class="text-center">
+                        <button type="submit" name="modif" class="col-4 btn btn-warning my-4 validateModif"><i class="fas fa-edit me-3"></i>Modify</button>
+                        <a href="images.php" class="col-4 btn btn-danger my-4 validateModif" title="Return to image gallery"><i class="fas fa-window-close me-3"></i>Cancel</a>
                     </div>
-                    <div class="col-1 col-md-3"></div>
                 </div>
+                <div class="col-1 col-md-2"></div>
             </div>
     </form>
 <?php
@@ -144,7 +155,16 @@ if (isset($_GET['m']) && $_GET['m'] > 0) {
 ?>
 
 <?php
-if (isset($_POST['validateModification'])) {
+if (isset($_POST['validateModification']) && isset($_POST['modif'])) {
+    $id = $_GET['m'];
+    empty($_POST['description']) ? $_POST['description'] = $descr : $_POST['description'] = htmlspecialchars($_POST['description']);
+    // empty($_POST['nameImg']) ? $_POST['nameImg'] = $nameImg : $_POST['nameImg'] = htmlspecialchars($_POST['nameImg']);
+    empty($_POST['favorite']) ? $_POST['favorite'] = $favorite : $_POST['favorite'] = 1;
+
+    // echo "<h1>" . $_POST['description'] . " - " . $_POST['favorite'] . "</h1>";
+    // empty($_POST['favorite']) ? $_POST['description'] = $descr : $_POST['description'] = htmlspecialchars($_POST['description']);
+    // echo "<h1>Modification en cours - " . $_POST['description'] . "</h1>";
+    updateSelectedImageIntoTable($id, $_POST['description'], $_POST['favorite']);
 }
 ?>
 
@@ -154,7 +174,21 @@ if (isset($_POST['validateModification'])) {
     function redirection() {
         window.location.href = 'http://localhost/wf3/bdd/Images-Galery-PHP/images.php';
     }
+
+    const favo = document.querySelector('#favo');
+    const favoriteSelection = document.querySelector("#favoriteSelection");
+    favo.addEventListener('click', function() {
+        if (favo.checked == true) {
+            favoriteSelection.innerHTML = "<i class='fas fa-heart fa-lg' style='color: red;'></i>";
+            favoriteSelection.value = true;
+
+        } else if (favo.checked == false) {
+            favoriteSelection.innerHTML = "<i class='fas fa-heart-broken' style='color: red;'></i>";
+            favoriteSelection.value = false;
+        }
+    })
 </script>
+
 
 <?php
 require_once('footer.php');

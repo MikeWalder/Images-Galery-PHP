@@ -21,8 +21,17 @@ $tabImageTypes = selectTabDataImageTypes();
         <div class="col-12 col-md-10 mt-3">
             <!-- <div class="alert alert-dark text-center mt-5">Configuration environment (in progress)</div> -->
             <div class="row">
-                <div class="col-7 bg-light text-white">
-
+                <div class="col-6 bg-light">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-6">
+                                <span class="h4 fw-bold">Chart type</span><br>
+                                <label for="chartType">
+                                    <input type="checkbox" id="chartType" name="chartType" value="bar"> Bar
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card col-4 ms-5 bg-light img-fluid">
                     <div class="card-header">
@@ -84,6 +93,17 @@ $tabImageTypes = selectTabDataImageTypes();
             </div>
         </div>
         <div class="col-md-1"></div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-1 col-md-4"></div>
+            <div class="col-10 col-md-4 bg-light mt-5">
+                <div class="card-header">
+                    <div class="card-title h5 fw-bold">Calendar</div>
+                </div>
+            </div>
+            <div class="col-1 col-md-4"></div>
+        </div>
     </div>
 </div>
 <?php

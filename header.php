@@ -22,7 +22,9 @@
 <body>
     <?php
     require_once('functionsDB.php');
-    $directory = checkCurrentRepertory();
+    $directoryFile = checkCurrentRepertory();
+    $directory = $directoryFile[0];
+    $extension = $directoryFile[1];
     ?>
 
     <nav class="navbar navbar-light <?= ($directory !== 'configuration' ? 'bg-secondary' : 'bg-info') ?> fixed-top">

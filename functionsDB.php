@@ -126,6 +126,40 @@ function modifIntoTable($id)
 
 
 
+function updateSelectedImageIntoTable($id, $descr, $favorite)
+{
+    $pdo = connexionDB();
+    // $nameImg = htmlspecialchars($nameImg);
+    $descr = htmlspecialchars($descr);
+    // $favorite === true ? $favorite = 1 : $favorite = 0;
+    $sql = "UPDATE tabimages SET descr = :descr, favorite = :favorite WHERE id = " . (int)$id;
+    $request = $pdo->prepare($sql);
+    $request->execute(array(
+        'descr' => $descr,
+        'favorite' => $favorite
+    ));
+    $txt = "<div class='container mt-3'>
+                <div class='row'>
+                    <div class='col-md-2'></div>
+                    <div class='col-md-8 text-center alert alert-info animate__animated animate__fadeOut animate__delay-2s'>
+                        Your image has been sucessfully modified ! <br>
+                        <div class='spinner-border text-info me-3' role='status'>
+                            <span class='sr-only'>Loading...</span>
+                        </div>
+                        Redirection ... 
+                    </div>
+                    <div class='col-md-2'></div>
+                </div>
+            </div>";
+    echo $txt;
+
+    echo "<script>
+    setTimeout('redirection()', 2000);
+    </script>";
+}
+
+
+
 function selectImageFormatFromTable($format)
 {
     if ($format === "*") {
@@ -169,7 +203,7 @@ function deleteFromTableById($identification)
         </div>";
 
     echo "<script>
-    setTimeout(redirection(), 3000);
+    setTimeout('redirection()', 2500);
     </script>";
 }
 
@@ -181,9 +215,9 @@ function checkCurrentRepertory()
     $rep_struct = explode('/', $current_rep);
     $size_rep_struct = count($rep_struct);
     $currentFileDirectory = explode('.', $rep_struct[$size_rep_struct - 1]);
-    $currentFileDirectoryName = $currentFileDirectory[0];
+    // $currentFileDirectoryName = $currentFileDirectory[0];
     // echo "<div class='h1 alert alert-info text-center fw-bold mt-3'>" . $currentFileDirectory . "</div>";
-    return $currentFileDirectoryName;
+    return $currentFileDirectory;
 }
 
 
@@ -220,4 +254,12 @@ function displayNumberOfResults($count)
     $count <= 1 ? $multi = "" : $multi = "s";
     echo "<div class='mt-md-2 mb-md-3 text-center fw-bold h4 animate__animated animate__fadeIn animate__delay-1s'>" . $count . " result" . $multi . "</div>";
     //echo "<div class='mt-3 text-center fw-bold h4 animate__animated animate__fadeIn animate__delay-1s'>" . sizeof($arrayData) . "résultats</div>";
+}
+
+
+
+function displayCalendar()
+{
+    $datasDate = getdate();
+    print_r($datasDate);
 }

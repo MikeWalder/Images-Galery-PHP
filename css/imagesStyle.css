@@ -66,3 +66,12 @@ body {
 .card-img-top {
   object-fit: cover;
 }
+
+.validateModif:hover i {
+  color: white;
+}
+
+.nameImgForm {
+  padding: 0px;
+  margin: 0px;
+}
