@@ -261,5 +261,88 @@ function displayNumberOfResults($count)
 function displayCalendar()
 {
     $datasDate = getdate();
-    print_r($datasDate);
+    $firstDayOfCurrentMonth = date("w", mktime(0, 0, 0, date("m"), 1, date("Y")));
+    $numberDays = date('t', $firstDayOfCurrentMonth);
+    //echo $numberDays;
+    $daysName = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+    $tabNumberDays = [];
+?>
+    <div class='card'>
+        <div class='card-header fw-bold h4'>Calendar</div>
+        <div class='card-body'>
+            <table class='table text-center'>
+                <thead>
+                    <th colspan='8'><?= $datasDate['month'] . " " . $datasDate['year'] ?></th>
+                </thead>
+                <thead>
+                    <?php
+                    for ($i = 0; $i < count($daysName); $i++) {
+                    ?>
+                        <th class='ps-2'><?= $daysName[$i] ?></th>
+                    <?php
+                    }
+                    ?>
+                </thead>
+                <tbody>
+                    <tr>
+                        <?php
+
+                        $totalBeginCalendar = $firstDayOfCurrentMonth + $numberDays;
+
+                        $weeksOfCurrentMonth = ceil($numberDays / 7);
+
+                        for ($i = 1; $i <= $weeksOfCurrentMonth * 7; $i++) {
+                            $tabNumberDays[$i] = " ";
+                        }
+                        for ($i = $firstDayOfCurrentMonth; $i <= ($numberDays + $firstDayOfCurrentMonth - 1); $i++) {
+                            $tabNumberDays[$i] = $i - $firstDayOfCurrentMonth + 1;
+                        }
+                        if ($totalBeginCalendar % 7 !== 0) {
+                            for ($j = ($totalBeginCalendar); $j <= ($totalBeginCalendar + (7 - $totalBeginCalendar % 7)); $j++) {
+                                $tabNumberDays[$j] = " ";
+                            }
+                        }
+                        /* print_r($tabNumberDays);
+                        echo "<br>";
+                        echo ceil(count($tabNumberDays) / 7) . "<br>";
+                        echo count($tabNumberDays) . "<br>";
+                        echo $totalBeginCalendar . "<br>";
+                        echo $tabNumberDays[$totalBeginCalendar] . "<br>"; */
+
+                        for ($i = 0; $i < ceil(count($tabNumberDays) / 7) - 1; $i++) {
+                        ?>
+                    <tr>
+                        <?php
+                            for ($j = 1; $j <= 7; $j++) {
+                        ?>
+                            <td><?= $tabNumberDays[$i * 7 + $j] ?></td>
+                        <?php
+                            }
+                        ?>
+                    </tr>
+                <?php
+                        }
+
+                        for ($i = ceil(count($tabNumberDays) / 7); $i < ceil(count($tabNumberDays) / 7) + 1; $i++) {
+                ?>
+                    <tr>
+                        <?php
+                            for ($j = 7; $j >= 1; $j--) {
+                        ?>
+                            <td><?= $tabNumberDays[$i * 7 - $j] ?></td>
+                        <?php
+                            }
+                        ?>
+                    </tr>
+                <?php
+                        }
+                ?>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<?php
 }
+?>

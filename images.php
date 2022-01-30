@@ -134,7 +134,7 @@ if (isset($_GET['m']) && $_GET['m'] > 0) {
                             <textarea class="form-control col-6" id="description" name="description" value="" rows="3" placeholder="<?= $descr ?>"></textarea>
                         </div>
                     </div>
-                    <div class="text-center row mt-3">
+                    <div class="text-center row mt-3 mb-2">
                         <div class="col-5"></div>
                         <input type="checkbox" class="btn-check mt-3" name="favorite" id="favo">
                         <label class="col-2 btn btn-outline-primary text-white fw-bold h4" for="favo" id="favoriteSelection">

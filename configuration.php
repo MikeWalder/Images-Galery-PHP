@@ -26,9 +26,14 @@ $tabImageTypes = selectTabDataImageTypes();
                         <div class="row">
                             <div class="col-6">
                                 <span class="h4 fw-bold">Chart type</span><br>
-                                <label for="chartType">
-                                    <input type="checkbox" id="chartType" name="chartType" value="bar"> Bar
-                                </label>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="" checked>
+                                    <label class="form-check-label" value="bar" for="flexSwitchCheckChecked">Bar</label>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="" checked>
+                                    <label class="form-check-label" value="bar" for="flexSwitchCheckChecked">Bar</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -99,7 +104,8 @@ $tabImageTypes = selectTabDataImageTypes();
             <div class="col-1 col-md-4"></div>
             <div class="col-10 col-md-4 bg-light mt-5">
                 <div class="card-header">
-                    <div class="card-title h5 fw-bold">Calendar</div>
+                    <!-- <div class="card-title h5 fw-bold">Calendar</div> -->
+                    <?php displayCalendar(); ?>
                 </div>
             </div>
             <div class="col-1 col-md-4"></div>
