@@ -263,7 +263,7 @@ function displayCalendar()
     $datasDate = getdate();
     $firstDayOfCurrentMonth = date("w", mktime(0, 0, 0, date("m"), 1, date("Y")));
     $numberDays = date('t', $firstDayOfCurrentMonth);
-    //echo $numberDays;
+
     $daysName = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
     $tabNumberDays = [];
 ?>
@@ -315,7 +315,7 @@ function displayCalendar()
                         <?php
                             for ($j = 1; $j <= 7; $j++) {
                         ?>
-                            <td><?= $tabNumberDays[$i * 7 + $j] ?></td>
+                            <td class="<?= $tabNumberDays[$i * 7 + $j]  == $datasDate['mday'] ? 'fw-bold' : '' ?>"><?= $tabNumberDays[$i * 7 + $j] ?></td>
                         <?php
                             }
                         ?>
@@ -329,7 +329,7 @@ function displayCalendar()
                         <?php
                             for ($j = 7; $j >= 1; $j--) {
                         ?>
-                            <td><?= $tabNumberDays[$i * 7 - $j] ?></td>
+                            <td class="<?= $tabNumberDays[$i * 7 - $j]  == $datasDate['mday'] ? 'fw-bold' : '' ?>"><?= $tabNumberDays[$i * 7 - $j] ?></td>
                         <?php
                             }
                         ?>
