@@ -185,6 +185,17 @@ function selectImageFormatFromTable($format)
 
 function deleteFromTableById($identification)
 {
+    // delete image file in img folder
+    $datasImg = modifIntoTable($identification);
+    $nameImg = $datasImg['nameImg'];
+    $format = $datasImg['format'];
+    $rep = getcwd();
+    $fileToDelete = $rep . "/img/" . $nameImg . "." . $format;
+    if (file_exists($fileToDelete)) {
+        unlink($fileToDelete);
+    }
+
+    // BDD part
     $pdo = connexionDB();
     $request = $pdo->prepare('DELETE FROM tabimages WHERE id = :id');
     $request->execute(array(
@@ -231,9 +242,12 @@ function displayImagesIntoCards($data)
             if (sizeof($q) > 0) {
         ?>
                 <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 border-secondary" style="height: 300px;">
-                    <div class="wrapper text-center bg-secondary border" style="height: 300px;">
+                    <div class="wrapper bg-secondary border" style="height: 300px;">
                         <img src="img/<?= $q['nameImg'] . "." . $q['format'] ?>" class="card-img-top img-fluid text-center" alt="<?= $q['descr'] ?>" style="height: 300px;">
-                        <div class="card-body">
+                        <div class="cardfavorite">
+                            <?= $q['favorite'] == 0 ? '<i class="fas fa-heart-broken fa-2x" style="color:red;"></i>' : '<i class="fas fa-heart fa-2x" style="color:red;"></i>' ?>
+                        </div>
+                        <div class="card-body text-center">
                             <h6 class="card-title text-white fw-bold"><?= $q['descr'] ? $q['descr'] : $q['nameImg'] ?></h6>
                             <a href="images.php?m=<?= $q['id'] ?>" class="btn btn-warning btn-lg me-1" title="Modify"><i class="fas fa-edit"></i></a>
                             <a href="images.php?r=<?= $q['id'] ?>" class="btn btn-danger btn-lg ms-2 me-1" title="Delete"><i class="fas fa-trash-alt fa-lg"></i></a>
@@ -302,12 +316,6 @@ function displayCalendar()
                                 $tabNumberDays[$j] = " ";
                             }
                         }
-                        /* print_r($tabNumberDays);
-                        echo "<br>";
-                        echo ceil(count($tabNumberDays) / 7) . "<br>";
-                        echo count($tabNumberDays) . "<br>";
-                        echo $totalBeginCalendar . "<br>";
-                        echo $tabNumberDays[$totalBeginCalendar] . "<br>"; */
 
                         for ($i = 0; $i < ceil(count($tabNumberDays) / 7) - 1; $i++) {
                         ?>
@@ -315,7 +323,7 @@ function displayCalendar()
                         <?php
                             for ($j = 1; $j <= 7; $j++) {
                         ?>
-                            <td class="<?= $tabNumberDays[$i * 7 + $j]  == $datasDate['mday'] ? 'fw-bold' : '' ?>"><?= $tabNumberDays[$i * 7 + $j] ?></td>
+                            <td class="<?= $tabNumberDays[$i * 7 + $j]  == $datasDate['mday'] ? 'fw-bold bg-info' : '' ?>"><?= $tabNumberDays[$i * 7 + $j] ?></td>
                         <?php
                             }
                         ?>
@@ -329,7 +337,7 @@ function displayCalendar()
                         <?php
                             for ($j = 7; $j >= 1; $j--) {
                         ?>
-                            <td class="<?= $tabNumberDays[$i * 7 - $j]  == $datasDate['mday'] ? 'fw-bold' : '' ?>"><?= $tabNumberDays[$i * 7 - $j] ?></td>
+                            <td class="<?= $tabNumberDays[$i * 7 - $j]  == $datasDate['mday'] ? 'fw-bold bg-info' : '' ?>"><?= $tabNumberDays[$i * 7 - $j] ?></td>
                         <?php
                             }
                         ?>

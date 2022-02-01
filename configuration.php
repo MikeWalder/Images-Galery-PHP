@@ -19,13 +19,12 @@ $tabImageTypes = selectTabDataImageTypes();
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-12 col-md-10 mt-3">
-            <!-- <div class="alert alert-dark text-center mt-5">Configuration environment (in progress)</div> -->
             <div class="row">
                 <div class="col-6 bg-light">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-6">
-                                <span class="h4 fw-bold">Chart type</span><br>
+                            <div class="col-5 border border-right">
+                                <!-- <span class="h4 fw-bold">Chart type</span><br>
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" id="" checked>
                                     <label class="form-check-label" value="bar" for="flexSwitchCheckChecked">Bar</label>
@@ -33,8 +32,9 @@ $tabImageTypes = selectTabDataImageTypes();
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" id="" checked>
                                     <label class="form-check-label" value="bar" for="flexSwitchCheckChecked">Bar</label>
-                                </div>
+                                </div> -->
                             </div>
+                            <div class="col-5"></div>
                         </div>
                     </div>
                 </div>
@@ -108,17 +108,11 @@ $tabImageTypes = selectTabDataImageTypes();
                     <?php displayCalendar(); ?>
                 </div>
             </div>
-            <div class="col-1 col-md-4"></div>
+            <div class="col-1 col-md-4">
+            </div>
         </div>
     </div>
 </div>
-<?php
-$variableAPasser = "Bonjour je teste juste le passage de PHP à JS";
-?>
-<script>
-    let variableRecuperee = <?= json_encode($variableAPasser); ?>;
-    console.log(variableRecuperee);
-</script>
 
 <?php
 require_once('footer.php');

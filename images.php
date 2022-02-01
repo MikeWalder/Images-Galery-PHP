@@ -23,37 +23,37 @@ if (!isset($_GET['m'])) {
                 <form method="POST" action="images.php">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="radio" name="imageFormat" id="formatAll" value="*" checked>
-                        <label class="form-check-label pe-3" for="formatAll">
+                        <label class="form-check-label pe-1 pe-md-3" for="formatAll">
                             All
                         </label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="radio" name="imageFormat" id="formatJpg" value="jpg">
-                        <label class="form-check-label ps-1 pe-3" for="formatJpg">
+                        <label class="form-check-label ps-0 ps-sm-1 pe-1 pe-md-3" for="formatJpg">
                             JPG
                         </label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="radio" name="imageFormat" id="formatJpeg" value="jpeg">
-                        <label class="form-check-label ps-1 pe-3" for="formatJpeg">
+                        <label class="form-check-label ps-0 ps-sm-1 pe-1 pe-md-3" for="formatJpeg">
                             JPEG
                         </label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="radio" name="imageFormat" id="formatPng" value="png">
-                        <label class="form-check-label ps-1 pe-3" for="formatPng">
+                        <label class="form-check-label ps-0 ps-sm-1 pe-1 pe-md-3" for="formatPng">
                             PNG
                         </label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="radio" name="imageFormat" id="formatGif" value="gif">
-                        <label class="form-check-label ps-1 pe-3" for="formatGif">
+                        <label class="form-check-label ps-0 ps-sm-1 pe-1 pe-md-3" for="formatGif">
                             GIF
                         </label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="radio" name="imageFormat" id="formatSvg" value="svg">
-                        <label class="form-check-label ps-1 pe-3" for="formatSvg">
+                        <label class="form-check-label ps-0 ps-sm-1 pe-1 pe-md-3" for="formatSvg">
                             SVG
                         </label>
                     </div>
@@ -107,6 +107,9 @@ if (isset($_GET['m']) && $_GET['m'] > 0) {
                 <div class="card border-secondary animate__animated animate__fadeIn" style="height: 300px;">
                     <div class="wrapper text-center bg-secondary border" style="height: 300px;">
                         <img src="img/<?= $datasImg['nameImg'] . "." . $datasImg['format'] ?>" class="card-img-top img-fluid text-center" alt="<?= $datasImg['descr'] ?>" style="height: 300px;">
+                        <div class="cardfavorite mr-auto">
+                            <?= $datasImg['favorite'] == 0 ? '<i class="fas fa-heart-broken fa-2x" style="color:red;"></i>' : '<i class="fas fa-heart fa-2x" style="color:red;"></i>' ?>
+                        </div>
                         <div class="card-body">
                             <h6 class="card-title text-white fw-bold"><?= $datasImg['descr'] ? $datasImg['descr'] : $datasImg['nameImg'] ?></h6>
                             <h6 class="card-title text-white fw-bold">Type : <?= $format ?></h6>
