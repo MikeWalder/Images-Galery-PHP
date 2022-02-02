@@ -7,8 +7,8 @@ require_once('header.php');
 </style>
 
 <br><br><br>
-<?php
 
+<?php
 $tabImageTypes = selectTabDataImageTypes();
 ?>
 
@@ -20,30 +20,18 @@ $tabImageTypes = selectTabDataImageTypes();
         <div class="col-md-1"></div>
         <div class="col-12 col-md-10 mt-3">
             <div class="row">
-                <div class="col-6 bg-light">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-5 border border-right">
-                                <!-- <span class="h4 fw-bold">Chart type</span><br>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="" checked>
-                                    <label class="form-check-label" value="bar" for="flexSwitchCheckChecked">Bar</label>
-                                </div>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="" checked>
-                                    <label class="form-check-label" value="bar" for="flexSwitchCheckChecked">Bar</label>
-                                </div> -->
-                            </div>
-                            <div class="col-5"></div>
-                        </div>
-                    </div>
+                <div class="col-12 col-md-6 bg-light">
+
+                    <?php displayCalendar(); ?>
+
                 </div>
-                <div class="card col-4 ms-5 bg-light img-fluid">
+                <div class="card col-12 col-md-6 bg-light img-fluid">
                     <div class="card-header">
-                        <div class="card-title h5 fw-bold">Image types</div>
+                        <div class="card-title h4 fw-bold">Image types</div>
                     </div>
 
                     <canvas id="myChart"></canvas>
+
                     <script>
                         const ctx = document.getElementById('myChart').getContext('2d');
                         const myChart = new Chart(ctx, {
@@ -99,19 +87,23 @@ $tabImageTypes = selectTabDataImageTypes();
         </div>
         <div class="col-md-1"></div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-1 col-md-4"></div>
-            <div class="col-10 col-md-4 bg-light mt-5">
-                <div class="card-header">
-                    <!-- <div class="card-title h5 fw-bold">Calendar</div> -->
-                    <?php displayCalendar(); ?>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-12 col-md-10 mt-3 p-0">
+            <div class="card">
+                <div class='card-header fw-bold h4'>
+                    Background selector
+                </div>
+                <div class="card-body">
+
                 </div>
             </div>
-            <div class="col-1 col-md-4">
-            </div>
+        </div>
+        <div class="col-md-1">
         </div>
     </div>
+
 </div>
 
 <?php

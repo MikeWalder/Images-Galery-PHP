@@ -282,11 +282,13 @@ function displayCalendar()
     $tabNumberDays = [];
 ?>
     <div class='card'>
-        <div class='card-header fw-bold h4'>Calendar</div>
+        <div class='card-header fw-bold h4'>
+            Calendar <span class="pb-2" style="float: right;"><?= ($datasDate['hours'] + 1) . ":" . $datasDate['minutes'] ?></span>
+        </div>
         <div class='card-body'>
             <table class='table text-center'>
                 <thead>
-                    <th colspan='8'><?= $datasDate['month'] . " " . $datasDate['year'] ?></th>
+                    <th colspan='8' class='h4 fw-bold'><?= $datasDate['month'] . " " . $datasDate['year'] ?></th>
                 </thead>
                 <thead>
                     <?php

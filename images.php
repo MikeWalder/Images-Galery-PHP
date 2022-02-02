@@ -162,7 +162,7 @@ if (isset($_POST['validateModification']) && isset($_POST['modif'])) {
     $id = $_GET['m'];
     empty($_POST['description']) ? $_POST['description'] = $descr : $_POST['description'] = htmlspecialchars($_POST['description']);
     // empty($_POST['nameImg']) ? $_POST['nameImg'] = $nameImg : $_POST['nameImg'] = htmlspecialchars($_POST['nameImg']);
-    empty($_POST['favorite']) ? $_POST['favorite'] = $favorite : $_POST['favorite'] = 1;
+    $_POST['favorite'] == false ? $_POST['favorite'] = 0 : $_POST['favorite'] = 1;
 
     // echo "<h1>" . $_POST['description'] . " - " . $_POST['favorite'] . "</h1>";
     // empty($_POST['favorite']) ? $_POST['description'] = $descr : $_POST['description'] = htmlspecialchars($_POST['description']);
