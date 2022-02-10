@@ -33,17 +33,21 @@ body {
 
 .card-body {
   position: relative;
-  bottom: 130px;
+  bottom: 120px;
   background-color: rgba(71, 71, 71, 0.8);
   color: black;
   opacity: 0;
   transition: all 0.4s;
-  height: 130px;
+  height: 120px;
 }
 
 .wrapper:hover .card-body {
   display: block;
   opacity: 1;
+}
+
+.wrapper:hover .card-body a {
+  transition: all 0.4s ease-in-out;
 }
 
 .wrapper:hover .card-body a:hover {
@@ -53,6 +57,7 @@ body {
 
 .wrapper:hover .card-body a i {
   color: black;
+  transition: all 0.4s ease-in-out;
 }
 
 .wrapper:hover .card-body a:hover i {

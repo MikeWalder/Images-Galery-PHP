@@ -163,8 +163,6 @@ if (isset($_POST['validateModification']) && isset($_POST['modif'])) {
     empty($_POST['description']) ? $_POST['description'] = $descr : $_POST['description'] = htmlspecialchars($_POST['description']);
     // empty($_POST['nameImg']) ? $_POST['nameImg'] = $nameImg : $_POST['nameImg'] = htmlspecialchars($_POST['nameImg']);
     $_POST['favorite'] == false ? $_POST['favorite'] = 0 : $_POST['favorite'] = 1;
-
-    // echo "<h1>" . $_POST['description'] . " - " . $_POST['favorite'] . "</h1>";
     // empty($_POST['favorite']) ? $_POST['description'] = $descr : $_POST['description'] = htmlspecialchars($_POST['description']);
     // echo "<h1>Modification en cours - " . $_POST['description'] . "</h1>";
     updateSelectedImageIntoTable($id, $_POST['description'], $_POST['favorite']);
@@ -184,12 +182,31 @@ if (isset($_POST['validateModification']) && isset($_POST['modif'])) {
         if (favo.checked == true) {
             favoriteSelection.innerHTML = "<i class='fas fa-heart fa-lg' style='color: red;'></i>";
             favoriteSelection.value = true;
-
         } else if (favo.checked == false) {
             favoriteSelection.innerHTML = "<i class='fas fa-heart-broken' style='color: red;'></i>";
             favoriteSelection.value = false;
         }
     })
+
+    const nightInput = document.querySelector('#nightInput');
+    const nightSelection = document.querySelector("#nightSelection");
+    nightInput.addEventListener('click', function() {
+        if (nightInput.checked == true) {
+            nightSelection.innerHTML = "<i class='far fa-moon fa-2x mt-2'></i>";
+            console.log(nightSelection.value);
+            nightSelection.value = true;
+            document.body.style.background = "black";
+
+        } else if (nightInput.checked == false) {
+            nightSelection.innerHTML = "<i class='fas fa-sun fa-2x mt-2'></i>";
+            console.log(nightSelection.value);
+            nightSelection.value = false;
+            document.body.style.backgroundImage = 'url("content/font2.jpg")';
+        }
+    })
+</script>
+
+
 </script>
 
 

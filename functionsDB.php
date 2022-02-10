@@ -154,8 +154,8 @@ function updateSelectedImageIntoTable($id, $descr, $favorite)
     echo $txt;
 
     echo "<script>
-    setTimeout('redirection()', 2000);
-    </script>";
+            setTimeout('redirection()', 2000);
+        </script>";
 }
 
 
@@ -241,16 +241,16 @@ function displayImagesIntoCards($data)
         while ($q = $data->fetch()) {
             if (sizeof($q) > 0) {
         ?>
-                <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 border-secondary" style="height: 300px;">
+                <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 border-secondary">
                     <div class="wrapper bg-secondary border" style="height: 300px;">
-                        <img src="img/<?= $q['nameImg'] . "." . $q['format'] ?>" class="card-img-top img-fluid text-center" alt="<?= $q['descr'] ?>" style="height: 300px;">
+                        <img src="img/<?= $q['nameImg'] . "." . $q['format'] ?>" class="card-img-top img-fluid text-center pt-md-1" alt="<?= $q['descr'] ?>" style="height: 300px;">
                         <div class="cardfavorite">
                             <?= $q['favorite'] == 0 ? '<i class="fas fa-heart-broken fa-2x" style="color:red;"></i>' : '<i class="fas fa-heart fa-2x" style="color:red;"></i>' ?>
                         </div>
-                        <div class="card-body text-center">
-                            <h6 class="card-title text-white fw-bold"><?= $q['descr'] ? $q['descr'] : $q['nameImg'] ?></h6>
-                            <a href="images.php?m=<?= $q['id'] ?>" class="btn btn-warning btn-lg me-1" title="Modify"><i class="fas fa-edit"></i></a>
-                            <a href="images.php?r=<?= $q['id'] ?>" class="btn btn-danger btn-lg ms-2 me-1" title="Delete"><i class="fas fa-trash-alt fa-lg"></i></a>
+                        <div class="card-body text-center p-0">
+                            <h6 class="card-title text-white my-auto fw-bold pt-2" style="height: 60px;"><?= $q['descr'] ? $q['descr'] : $q['nameImg'] ?></h6>
+                            <a href="images.php?m=<?= $q['id'] ?>" class="btn btn-warning col-4 me-1" title="Modify"><i class="fas fa-edit"></i></a>
+                            <a href="images.php?r=<?= $q['id'] ?>" class="btn btn-danger col-4 ms-2 me-1" title="Delete"><i class="fas fa-trash-alt fa-lg"></i></a>
                         </div>
                     </div>
                 </div>

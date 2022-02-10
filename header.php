@@ -21,6 +21,7 @@
 
 <body>
     <?php
+    session_start();
     require_once('functionsDB.php');
     $directoryFile = checkCurrentRepertory();
     $directory = $directoryFile[0];
@@ -30,6 +31,7 @@
     <nav class="navbar navbar-light <?= ($directory !== 'configuration' ? 'bg-secondary' : 'bg-info') ?> fixed-top">
         <div class="container-fluid d-flex flex-column flex-md-row align-items-center" id="bs-overwrite">
             <div class="offcanvas offcanvas-start <?= ($directory !== 'configuration' ? 'bg-secondary' : 'bg-info') ?> text-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+
                 <div class="offcanvas-header">
 
                     <a class="navbar-brand text-white fw-bold me-3" href="<?= ($directory !== 'configuration' ? 'index.php' : 'configuration.php') ?>">
@@ -39,6 +41,7 @@
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 
                 </div>
+
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-start flex-grow-1 ps-3">
 
@@ -61,6 +64,13 @@
             <button class="navbar-toggler bg-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+            <div class="me-auto ms-5">
+                <input type="checkbox" class="btn-check" name="nightInput" id="nightInput">
+                <label class="col-2 text-white fw-bold h4" for="nightInput" id="nightSelection">
+                    <?= $night = 0 ? "<i class='far fa-moon fa-2x mt-2'></i>" : "<i class='fas fa-sun fa-2x mt-2'></i>" ?>
+                </label>
+            </div>
 
             <a class="fw-bold navbar-brand d-none d-md-block animate__animated animate__slideInRight" id="titleNavigation" href="<?= ($directory !== 'configuration' ? 'index.php' : 'configuration.php') ?>">
                 <img src="content/logo<?= ($directory !== 'configuration' ? '1.png' : '2.png') ?>" alt="<?= ($directory !== 'configuration' ? 'Image Gallery Icon' : 'Configuration Icon') ?>" width="30" height="30" class="d-inline-block align-text-top me-3">
