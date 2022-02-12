@@ -12,7 +12,7 @@ require_once('header.php');
 $tabImageTypes = selectTabDataImageTypes();
 ?>
 
-<div class="h1 display-4 fw-bold text-center pt-5 animate__animated animate__fadeIn">Dashboard</div>
+<div class="h1 display-4 fw-bold text-center py-5 animate__animated animate__fadeIn">Dashboard</div>
 
 <div class="container-fluid">
 
@@ -20,12 +20,15 @@ $tabImageTypes = selectTabDataImageTypes();
         <div class="col-md-1"></div>
         <div class="col-12 col-md-10 mt-3">
             <div class="row">
-                <div class="col-12 col-md-6 bg-light">
+                <div class="col-12 col-md-5 rounded bg-light">
 
-                    <?php displayCalendar(); ?>
+                    <?php $displayMode = displayCalendar(); ?>
 
                 </div>
-                <div class="card col-12 col-md-6 bg-light img-fluid">
+
+                <div class="col-md-2"></div>
+
+                <div class="card col-12 col-md-5 bg-light img-fluid">
                     <div class="card-header">
                         <div class="card-title h4 fw-bold">Image types</div>
                     </div>
@@ -88,7 +91,7 @@ $tabImageTypes = selectTabDataImageTypes();
         <div class="col-md-1"></div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-1"></div>
         <div class="col-12 col-md-10 mt-3 p-0">
             <div class="card">
@@ -102,7 +105,7 @@ $tabImageTypes = selectTabDataImageTypes();
         </div>
         <div class="col-md-1">
         </div>
-    </div>
+    </div> -->
 
 </div>
 

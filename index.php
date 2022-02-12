@@ -102,23 +102,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     })
 
     // -------------------- //
-
-    const nightInput = document.querySelector('#nightInput');
-    const nightSelection = document.querySelector("#nightSelection");
-    nightInput.addEventListener('click', function() {
-        if (nightInput.checked == true) {
-            nightSelection.innerHTML = "<i class='far fa-moon fa-2x mt-2'></i>";
-            console.log(nightSelection.value);
-            nightSelection.value = true;
-            document.body.style.background = "black";
-
-        } else if (nightInput.checked == false) {
-            nightSelection.innerHTML = "<i class='fas fa-sun fa-2x mt-2'></i>";
-            console.log(nightSelection.value);
-            nightSelection.value = false;
-            document.body.style.backgroundImage = 'url("content/font2.jpg")';
-        }
-    })
 </script>
 
 <?php

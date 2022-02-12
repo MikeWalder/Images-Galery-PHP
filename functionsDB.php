@@ -163,7 +163,6 @@ function updateSelectedImageIntoTable($id, $descr, $favorite)
 function selectImageFormatFromTable($format)
 {
     if ($format === "*") {
-        // selectAllTable();
         $datas = selectAllTable();
         $count = $datas->rowCount();
         displayNumberOfResults($count);
@@ -174,6 +173,7 @@ function selectImageFormatFromTable($format)
         $request->execute(array(
             'format' => $format
         ));
+
         $count = $request->rowCount();
 
         displayNumberOfResults($count);
@@ -214,7 +214,7 @@ function deleteFromTableById($identification)
         </div>";
 
     echo "<script>
-    setTimeout('redirection()', 2500);
+        setTimeout('redirection()', 2500);
     </script>";
 }
 
@@ -241,9 +241,9 @@ function displayImagesIntoCards($data)
         while ($q = $data->fetch()) {
             if (sizeof($q) > 0) {
         ?>
-                <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 border-secondary">
+                <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 border-secondary animate__animated animate__fadeIn">
                     <div class="wrapper bg-secondary border" style="height: 300px;">
-                        <img src="img/<?= $q['nameImg'] . "." . $q['format'] ?>" class="card-img-top img-fluid text-center pt-md-1" alt="<?= $q['descr'] ?>" style="height: 300px;">
+                        <img src="img/<?= $q['nameImg'] . "." . $q['format'] ?>" class="card-img-top text-center pt-md-1" alt="<?= $q['descr'] ?>" style="height: 300px;">
                         <div class="cardfavorite">
                             <?= $q['favorite'] == 0 ? '<i class="fas fa-heart-broken fa-2x" style="color:red;"></i>' : '<i class="fas fa-heart fa-2x" style="color:red;"></i>' ?>
                         </div>

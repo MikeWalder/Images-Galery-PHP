@@ -8,3 +8,8 @@
   filter: contrast(200%);
   transition: transform 0.4s ease-in-out, filter 0.5s ease-in-out;
 }
+
+#nightSelection i:hover {
+  transform: scale(1.1);
+  transition: transform 0.4s ease-in-out;
+}

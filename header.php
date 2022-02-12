@@ -12,6 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
     <!-- Header CSS -->
     <link rel="stylesheet" href="css/headerStyle.css" />
+    <!-- script main functions -->
+    <script src="js/functions.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +23,6 @@
 
 <body>
     <?php
-    session_start();
     require_once('functionsDB.php');
     $directoryFile = checkCurrentRepertory();
     $directory = $directoryFile[0];
@@ -68,7 +69,17 @@
             <div class="me-auto ms-5">
                 <input type="checkbox" class="btn-check" name="nightInput" id="nightInput">
                 <label class="col-2 text-white fw-bold h4" for="nightInput" id="nightSelection">
-                    <?= $night = 0 ? "<i class='far fa-moon fa-2x mt-2'></i>" : "<i class='fas fa-sun fa-2x mt-2'></i>" ?>
+                    <script>
+                        let nightValue = getCookie("night");
+                        console.log(nightValue);
+                        const nightSelection = document.querySelector("#nightSelection");
+                        //let ada = defaultModeIcon(nightValue);
+                        //console.log(ada);
+                        nightValue == false ? nightSelection.innerHTML = "<i class='far fa-moon fa-lg mt-2' onclick='setFaviconDisplayMode()'></i>" :
+                            nightSelection.innerHTML = "<i class='fas fa-sun fa-lg mt-2' onclick='setFaviconDisplayMode()'></i>"
+                    </script>
+
+
                 </label>
             </div>
 

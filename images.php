@@ -106,13 +106,10 @@ if (isset($_GET['m']) && $_GET['m'] > 0) {
             <div class="col-10 col-sm-8 col-md-4">
                 <div class="card border-secondary animate__animated animate__fadeIn" style="height: 300px;">
                     <div class="wrapper text-center bg-secondary border" style="height: 300px;">
-                        <img src="img/<?= $datasImg['nameImg'] . "." . $datasImg['format'] ?>" class="card-img-top img-fluid text-center" alt="<?= $datasImg['descr'] ?>" style="height: 300px;">
-                        <div class="cardfavorite mr-auto">
-                            <?= $datasImg['favorite'] == 0 ? '<i class="fas fa-heart-broken fa-2x" style="color:red;"></i>' : '<i class="fas fa-heart fa-2x" style="color:red;"></i>' ?>
-                        </div>
+                        <img src="img/<?= $datasImg['nameImg'] . "." . $datasImg['format'] ?>" class="card-img-top text-center" alt="<?= $datasImg['descr'] ?>" style="height: 300px;">
                         <div class="card-body">
-                            <h6 class="card-title text-white fw-bold"><?= $datasImg['descr'] ? $datasImg['descr'] : $datasImg['nameImg'] ?></h6>
-                            <h6 class="card-title text-white fw-bold">Type : <?= $format ?></h6>
+                            <h6 class="card-title text-white fw-bold pt-3">Name : <?= $datasImg['descr'] ? $datasImg['descr'] : $datasImg['nameImg'] ?></h6>
+                            <h6 class="card-title text-white fw-bold">Type : <?= strtoupper($format) ?></h6>
                         </div>
                     </div>
                 </div>
@@ -125,11 +122,7 @@ if (isset($_GET['m']) && $_GET['m'] > 0) {
             <div class="row">
                 <div class="col-1 col-md-2"></div>
                 <div class="col-10 col-md-8 bg-secondary rounded animate__animated animate__fadeIn">
-                    <!-- <div class="form-group row mt-3 p-0 nameImgForm">
-                        <label for="nameImg" class="col-2 col-form-label fw-bold h4 text-white">Name : </label>
-                        <input type="text" name="nameImg" class="form-control-text shadow bg-light col-8 pe-3" placeholder="<?php //$nameImg 
-                                                                                                                            ?>">
-                    </div> -->
+
                     <div class="form-group row mt-3">
                         <label for="description" class="col-2 col-form-label fw-bold h4 text-white">Description : </label>
                         <!-- <input type="textarea" name="description" class="form-control-text shadow bg-light col-6 pl-2" placeholder=""> -->
@@ -161,10 +154,8 @@ if (isset($_GET['m']) && $_GET['m'] > 0) {
 if (isset($_POST['validateModification']) && isset($_POST['modif'])) {
     $id = $_GET['m'];
     empty($_POST['description']) ? $_POST['description'] = $descr : $_POST['description'] = htmlspecialchars($_POST['description']);
-    // empty($_POST['nameImg']) ? $_POST['nameImg'] = $nameImg : $_POST['nameImg'] = htmlspecialchars($_POST['nameImg']);
-    $_POST['favorite'] == false ? $_POST['favorite'] = 0 : $_POST['favorite'] = 1;
-    // empty($_POST['favorite']) ? $_POST['description'] = $descr : $_POST['description'] = htmlspecialchars($_POST['description']);
-    // echo "<h1>Modification en cours - " . $_POST['description'] . "</h1>";
+    empty($_POST['favorite']) ? $_POST['favorite'] = 0 : $_POST['favorite'] = 1;
+
     updateSelectedImageIntoTable($id, $_POST['description'], $_POST['favorite']);
 }
 ?>
@@ -172,9 +163,9 @@ if (isset($_POST['validateModification']) && isset($_POST['modif'])) {
 
 
 <script>
-    function redirection() {
+    /* function redirection() {
         window.location.href = 'http://localhost/wf3/bdd/Images-Galery-PHP/images.php';
-    }
+    } */
 
     const favo = document.querySelector('#favo');
     const favoriteSelection = document.querySelector("#favoriteSelection");
@@ -192,13 +183,13 @@ if (isset($_POST['validateModification']) && isset($_POST['modif'])) {
     const nightSelection = document.querySelector("#nightSelection");
     nightInput.addEventListener('click', function() {
         if (nightInput.checked == true) {
-            nightSelection.innerHTML = "<i class='far fa-moon fa-2x mt-2'></i>";
+            nightSelection.innerHTML = "<i class='far fa-moon fa-lg mt-2'></i>";
             console.log(nightSelection.value);
             nightSelection.value = true;
             document.body.style.background = "black";
 
         } else if (nightInput.checked == false) {
-            nightSelection.innerHTML = "<i class='fas fa-sun fa-2x mt-2'></i>";
+            nightSelection.innerHTML = "<i class='fas fa-sun fa-lg mt-2'></i>";
             console.log(nightSelection.value);
             nightSelection.value = false;
             document.body.style.backgroundImage = 'url("content/font2.jpg")';
