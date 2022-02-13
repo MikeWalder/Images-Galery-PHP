@@ -70,16 +70,8 @@
                 <input type="checkbox" class="btn-check" name="nightInput" id="nightInput">
                 <label class="col-2 text-white fw-bold h4" for="nightInput" id="nightSelection">
                     <script>
-                        let nightValue = getCookie("night");
-                        console.log(nightValue);
-                        const nightSelection = document.querySelector("#nightSelection");
-                        //let ada = defaultModeIcon(nightValue);
-                        //console.log(ada);
-                        nightValue == false ? nightSelection.innerHTML = "<i class='far fa-moon fa-lg mt-2' onclick='setFaviconDisplayMode()'></i>" :
-                            nightSelection.innerHTML = "<i class='fas fa-sun fa-lg mt-2' onclick='setFaviconDisplayMode()'></i>"
+                        checkModeIcon();
                     </script>
-
-
                 </label>
             </div>
 

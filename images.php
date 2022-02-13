@@ -8,52 +8,53 @@ require_once('header.php');
 
 <br><br><br>
 
-<div class="h1 display-4 fw-bold text-center pt-5 animate__animated animate__fadeIn">
+<h1 class="display-4 text-secondary fw-bold text-center pt-5 animate__animated animate__fadeIn">
     <?=
     !isset($_GET['m']) ? 'Image library' : 'Image modification'
-    ?></div>
+    ?>
+</h1>
 
 <?php
 if (!isset($_GET['m'])) {
 ?>
-    <div class="container mt-4">
+    <div class="container mt-5">
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6 text-center mt-3">
-                <form method="POST" action="images.php">
+                <form method="POST" action="images.php" id="imgSelect">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="radio" name="imageFormat" id="formatAll" value="*" checked>
-                        <label class="form-check-label pe-1 pe-md-3" for="formatAll">
+                        <label class="form-check-label text-secondary fw-bold pe-1 pe-md-3" for="formatAll">
                             All
                         </label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="radio" name="imageFormat" id="formatJpg" value="jpg">
-                        <label class="form-check-label ps-0 ps-sm-1 pe-1 pe-md-3" for="formatJpg">
+                        <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatJpg">
                             JPG
                         </label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="radio" name="imageFormat" id="formatJpeg" value="jpeg">
-                        <label class="form-check-label ps-0 ps-sm-1 pe-1 pe-md-3" for="formatJpeg">
+                        <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatJpeg">
                             JPEG
                         </label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="radio" name="imageFormat" id="formatPng" value="png">
-                        <label class="form-check-label ps-0 ps-sm-1 pe-1 pe-md-3" for="formatPng">
+                        <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatPng">
                             PNG
                         </label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="radio" name="imageFormat" id="formatGif" value="gif">
-                        <label class="form-check-label ps-0 ps-sm-1 pe-1 pe-md-3" for="formatGif">
+                        <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatGif">
                             GIF
                         </label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="radio" name="imageFormat" id="formatSvg" value="svg">
-                        <label class="form-check-label ps-0 ps-sm-1 pe-1 pe-md-3" for="formatSvg">
+                        <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatSvg">
                             SVG
                         </label>
                     </div>
@@ -178,26 +179,6 @@ if (isset($_POST['validateModification']) && isset($_POST['modif'])) {
             favoriteSelection.value = false;
         }
     })
-
-    const nightInput = document.querySelector('#nightInput');
-    const nightSelection = document.querySelector("#nightSelection");
-    nightInput.addEventListener('click', function() {
-        if (nightInput.checked == true) {
-            nightSelection.innerHTML = "<i class='far fa-moon fa-lg mt-2'></i>";
-            console.log(nightSelection.value);
-            nightSelection.value = true;
-            document.body.style.background = "black";
-
-        } else if (nightInput.checked == false) {
-            nightSelection.innerHTML = "<i class='fas fa-sun fa-lg mt-2'></i>";
-            console.log(nightSelection.value);
-            nightSelection.value = false;
-            document.body.style.backgroundImage = 'url("content/font2.jpg")';
-        }
-    })
-</script>
-
-
 </script>
 
 

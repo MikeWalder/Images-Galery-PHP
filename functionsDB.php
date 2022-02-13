@@ -226,8 +226,7 @@ function checkCurrentRepertory()
     $rep_struct = explode('/', $current_rep);
     $size_rep_struct = count($rep_struct);
     $currentFileDirectory = explode('.', $rep_struct[$size_rep_struct - 1]);
-    // $currentFileDirectoryName = $currentFileDirectory[0];
-    // echo "<div class='h1 alert alert-info text-center fw-bold mt-3'>" . $currentFileDirectory . "</div>";
+
     return $currentFileDirectory;
 }
 
@@ -267,7 +266,6 @@ function displayNumberOfResults($count)
 {
     $count <= 1 ? $multi = "" : $multi = "s";
     echo "<div class='mt-md-2 mb-md-3 text-center fw-bold h4 animate__animated animate__fadeIn animate__delay-1s'>" . $count . " result" . $multi . "</div>";
-    //echo "<div class='mt-3 text-center fw-bold h4 animate__animated animate__fadeIn animate__delay-1s'>" . sizeof($arrayData) . "résultats</div>";
 }
 
 
