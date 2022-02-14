@@ -17,18 +17,21 @@ function setFaviconDisplayMode() {
                 nightSelection.value = true;
                 document.body.style.background = "black";
                 document.cookie = "night=true; path=/; expires=" + date;
+                //location.reload();
 
             } else if (nightInput.checked == false) {
                 nightSelection.innerHTML = "<i class='far fa-moon fa-lg mt-2'></i>";
                 nightSelection.value = false;
                 document.body.style.backgroundImage = 'url("content/font2.jpg")';
                 document.cookie = "night=false; path=/; expires" + date;
+                //location.reload();
             }
         })
     }
     else {
         document.cookie = "night=false; path=/; expires" + date;
         saveState("night");
+        location.reload();
     }
 }
 
@@ -44,21 +47,17 @@ function getCookie(name) {
 
 function checkModeIcon() {
     const nightSelection = document.querySelector("#nightSelection");
-    const imgSelect = document.querySelector("#imgSelect");
     let night = getCookie("night");
-
+    
     if(document.cookie) {
-        if(night == "true") {
+        if(night === "false") {
             nightSelection.innerHTML = "<i class='far fa-moon fa-lg mt-2' onclick='setFaviconDisplayMode()'></i>";
-            document.body.style.background = "black";
-            //maintitled.style.color = "white";
-            imgSelect.style.backgroundColor = "white";
-
-        } else if(night == "false") {
-            nightSelection.innerHTML = "<i class='fas fa-sun fa-lg mt-2' onclick='setFaviconDisplayMode()'></i>";
             document.body.style.backgroundImage = 'url("content/font2.jpg")';
-            //maintitled.style.color = "black";
-            imgSelect.style.backgroundColor = "black";
+
+        } else if(night === "true") {
+            nightSelection.innerHTML = "<i class='fas fa-sun fa-lg mt-2' onclick='setFaviconDisplayMode()'></i>";
+            document.body.style.background = "black";
+
         }
     return nightSelection.innerHTML;
     }

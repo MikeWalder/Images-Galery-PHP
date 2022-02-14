@@ -91,42 +91,7 @@ $tabImageTypes = selectTabDataImageTypes();
         <div class="col-md-1"></div>
     </div>
 
-    <!-- <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-12 col-md-10 mt-3 p-0">
-            <div class="card">
-                <div class='card-header fw-bold h4'>
-                    Background selector
-                </div>
-                <div class="card-body">
-
-                </div>
-            </div>
-        </div>
-        <div class="col-md-1">
-        </div>
-    </div> -->
-
 </div>
-
-<script>
-    const nightInput = document.querySelector('#nightInput');
-    const nightSelection = document.querySelector("#nightSelection");
-    nightInput.addEventListener('click', function() {
-        if (nightInput.checked == true) {
-            nightSelection.innerHTML = "<i class='far fa-moon fa-2x mt-2'></i>";
-            console.log(nightSelection.value);
-            nightSelection.value = true;
-            document.body.style.background = "black";
-
-        } else if (nightInput.checked == false) {
-            nightSelection.innerHTML = "<i class='fas fa-sun fa-2x mt-2'></i>";
-            console.log(nightSelection.value);
-            nightSelection.value = false;
-            document.body.style.backgroundImage = 'url("content/font2.jpg")';
-        }
-    })
-</script>
 
 <?php
 require_once('footer.php');

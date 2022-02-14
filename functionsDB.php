@@ -265,7 +265,7 @@ function displayImagesIntoCards($data)
 function displayNumberOfResults($count)
 {
     $count <= 1 ? $multi = "" : $multi = "s";
-    echo "<div class='mt-md-2 mb-md-3 text-center fw-bold h4 animate__animated animate__fadeIn animate__delay-1s'>" . $count . " result" . $multi . "</div>";
+    echo "<div class='my-md-3 text-center fw-bold text-secondary h4 animate__animated animate__fadeIn'>" . $count . " result" . $multi . "</div>";
 }
 
 

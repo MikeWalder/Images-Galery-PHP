@@ -8,7 +8,7 @@ require_once('header.php');
 
 <br><br><br>
 
-<h1 class="display-4 text-secondary fw-bold text-center pt-5 animate__animated animate__fadeIn">
+<h1 class="display-4 text-secondary fw-bold text-center pt-5 animate__animated animate__fadeIn" id="maintitle">
     <?=
     !isset($_GET['m']) ? 'Image library' : 'Image modification'
     ?>
@@ -21,45 +21,50 @@ if (!isset($_GET['m'])) {
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6 text-center mt-3">
-                <form method="POST" action="images.php" id="imgSelect">
-                    <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" name="imageFormat" id="formatAll" value="*" checked>
-                        <label class="form-check-label text-secondary fw-bold pe-1 pe-md-3" for="formatAll">
-                            All
-                        </label>
+                <form method="POST" action="images.php" class="mt-3">
+
+                    <div class="bg-light opacity-75 rounded-3 py-3">
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="radio" name="imageFormat" id="formatAll" value="*" checked>
+                            <label class="form-check-label text-secondary fw-bold pe-1 pe-md-3" for="formatAll">
+                                All
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="radio" name="imageFormat" id="formatJpg" value="jpg">
+                            <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatJpg">
+                                JPG
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="radio" name="imageFormat" id="formatJpeg" value="jpeg">
+                            <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatJpeg">
+                                JPEG
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="radio" name="imageFormat" id="formatPng" value="png">
+                            <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatPng">
+                                PNG
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="radio" name="imageFormat" id="formatGif" value="gif">
+                            <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatGif">
+                                GIF
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input" type="radio" name="imageFormat" id="formatSvg" value="svg">
+                            <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatSvg">
+                                SVG
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" name="imageFormat" id="formatJpg" value="jpg">
-                        <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatJpg">
-                            JPG
-                        </label>
-                    </div>
-                    <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" name="imageFormat" id="formatJpeg" value="jpeg">
-                        <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatJpeg">
-                            JPEG
-                        </label>
-                    </div>
-                    <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" name="imageFormat" id="formatPng" value="png">
-                        <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatPng">
-                            PNG
-                        </label>
-                    </div>
-                    <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" name="imageFormat" id="formatGif" value="gif">
-                        <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatGif">
-                            GIF
-                        </label>
-                    </div>
-                    <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" name="imageFormat" id="formatSvg" value="svg">
-                        <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatSvg">
-                            SVG
-                        </label>
-                    </div>
+
                     <input type="hidden" name="validation">
-                    <button type="submit" class="col-6 btn btn-success btn-block fw-bold shadow mt-5" id="btnHoverEffect">Confirm</button>
+                    <button type="submit" class="col-6 btn btn-success btn-block fw-bold shadow mt-5 mb-3" id="btnHoverEffect">Confirm</button>
+
                 </form>
             </div>
             <div class="col-md-3"></div>
@@ -164,10 +169,6 @@ if (isset($_POST['validateModification']) && isset($_POST['modif'])) {
 
 
 <script>
-    /* function redirection() {
-        window.location.href = 'http://localhost/wf3/bdd/Images-Galery-PHP/images.php';
-    } */
-
     const favo = document.querySelector('#favo');
     const favoriteSelection = document.querySelector("#favoriteSelection");
     favo.addEventListener('click', function() {
