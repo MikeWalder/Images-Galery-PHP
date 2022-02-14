@@ -12,7 +12,12 @@ require_once('header.php');
 $tabImageTypes = selectTabDataImageTypes();
 ?>
 
-<h1 class="display-4 text-secondary fw-bold text-center py-5 animate__animated animate__fadeIn">Dashboard</h1>
+<h1 class="display-4 fw-bold text-center py-5 animate__animated animate__fadeIn" id="maintitle">
+    <script>
+        checkModeMaintitle();
+    </script>
+    Dashboard
+</h1>
 
 <div class="container-fluid">
 

@@ -8,7 +8,10 @@ require_once('header.php');
 
 <br><br><br>
 
-<h1 class="display-4 text-secondary fw-bold text-center pt-5 animate__animated animate__fadeIn" id="maintitle">
+<h1 class="display-4 fw-bold text-center pt-5 animate__animated animate__fadeIn" id="maintitle">
+    <script>
+        checkModeMaintitle();
+    </script>
     <?=
     !isset($_GET['m']) ? 'Image library' : 'Image modification'
     ?>
@@ -23,40 +26,40 @@ if (!isset($_GET['m'])) {
             <div class="col-md-6 text-center mt-3">
                 <form method="POST" action="images.php" class="mt-3">
 
-                    <div class="bg-light opacity-75 rounded-3 py-3">
+                    <div class="bg-light opacity-75 rounded-3 py-3" id="imgSelectorFormDisplay">
                         <div class="form-check-inline">
                             <input class="form-check-input" type="radio" name="imageFormat" id="formatAll" value="*" checked>
-                            <label class="form-check-label text-secondary fw-bold pe-1 pe-md-3" for="formatAll">
+                            <label class="form-check-label fw-bold pe-1 pe-md-3" for="formatAll">
                                 All
                             </label>
                         </div>
                         <div class="form-check-inline">
                             <input class="form-check-input" type="radio" name="imageFormat" id="formatJpg" value="jpg">
-                            <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatJpg">
+                            <label class="form-check-label fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatJpg">
                                 JPG
                             </label>
                         </div>
                         <div class="form-check-inline">
                             <input class="form-check-input" type="radio" name="imageFormat" id="formatJpeg" value="jpeg">
-                            <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatJpeg">
+                            <label class="form-check-label fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatJpeg">
                                 JPEG
                             </label>
                         </div>
                         <div class="form-check-inline">
                             <input class="form-check-input" type="radio" name="imageFormat" id="formatPng" value="png">
-                            <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatPng">
+                            <label class="form-check-label fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatPng">
                                 PNG
                             </label>
                         </div>
                         <div class="form-check-inline">
                             <input class="form-check-input" type="radio" name="imageFormat" id="formatGif" value="gif">
-                            <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatGif">
+                            <label class="form-check-label fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatGif">
                                 GIF
                             </label>
                         </div>
                         <div class="form-check-inline">
                             <input class="form-check-input" type="radio" name="imageFormat" id="formatSvg" value="svg">
-                            <label class="form-check-label text-secondary fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatSvg">
+                            <label class="form-check-label fw-bold ps-0 ps-sm-1 pe-1 pe-md-3" for="formatSvg">
                                 SVG
                             </label>
                         </div>

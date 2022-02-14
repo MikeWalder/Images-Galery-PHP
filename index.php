@@ -8,7 +8,12 @@ require_once('header.php');
 
 <br><br><br>
 
-<h1 class="display-4 text-secondary fw-bold text-center pt-5 animate__animated animate__fadeIn" id="main_Title">Add an image</h1>
+<h1 class="display-4 fw-bold text-center pt-5 animate__animated animate__fadeIn" id="maintitle">
+    <script>
+        checkModeMaintitle();
+    </script>
+    Add an image
+</h1>
 
 <div class="container">
     <div class="row">

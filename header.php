@@ -72,7 +72,7 @@
                 <input type="checkbox" class="btn-check" name="nightInput" id="nightInput">
                 <label class="col-2 text-white fw-bold h4" for="nightInput" id="nightSelection">
                     <script>
-                        checkModeIcon();
+                        setTimeout(checkModeIcon(), 100);
                     </script>
                 </label>
             </div>
