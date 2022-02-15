@@ -31,15 +31,15 @@
     $extension = $directoryFile[1];
     ?>
 
-    <nav class="navbar navbar-light <?= ($directory !== 'configuration' ? 'bg-secondary' : 'bg-info') ?> fixed-top">
+    <nav class="navbar navbar-light <?= ($directory !== 'dashboard' ? 'bg-secondary' : 'bg-info') ?> fixed-top">
         <div class="container-fluid d-flex flex-column flex-md-row align-items-center" id="bs-overwrite">
-            <div class="offcanvas offcanvas-start <?= ($directory !== 'configuration' ? 'bg-secondary' : 'bg-info') ?> text-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas offcanvas-start <?= ($directory !== 'dashboard' ? 'bg-secondary' : 'bg-info') ?> text-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
 
                 <div class="offcanvas-header">
 
-                    <a class="navbar-brand text-white fw-bold me-3" href="<?= ($directory !== 'configuration' ? 'index.php' : 'configuration.php') ?>">
-                        <img src="content/logo<?= ($directory !== 'configuration' ? '1.png' : '2.png') ?>" alt="" width="30" height="30" class="d-inline-block align-text-top text-white h3">
-                        <?= ($directory !== 'configuration' ? 'Image Gallery' : 'Configuration') ?>
+                    <a class="navbar-brand text-white fw-bold me-3" href="<?= ($directory !== 'dashboard' ? 'index.php' : 'dashboard.php') ?>">
+                        <img src="content/logo<?= ($directory !== 'dashboard' ? '1.png' : '2.png') ?>" alt="" width="30" height="30" class="d-inline-block align-text-top text-white h3">
+                        <?= ($directory !== 'dashboard' ? 'Image Gallery' : 'Dashboard') ?>
                     </a>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 
@@ -57,7 +57,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-white fw-bold hovernavlink" href="configuration.php">Configuration</a>
+                            <a class="nav-link text-white fw-bold hovernavlink" href="dashboard.php">Dashboard</a>
                         </li>
 
                     </ul>
@@ -77,9 +77,9 @@
                 </label>
             </div>
 
-            <a class="fw-bold navbar-brand d-none d-md-block animate__animated animate__slideInRight" id="titleNavigation" href="<?= ($directory !== 'configuration' ? 'index.php' : 'configuration.php') ?>">
-                <img src="content/logo<?= ($directory !== 'configuration' ? '1.png' : '2.png') ?>" alt="<?= ($directory !== 'configuration' ? 'Image Gallery Icon' : 'Configuration Icon') ?>" width="30" height="30" class="d-inline-block align-text-top me-3">
-                <?= ($directory !== 'configuration' ? 'Image Gallery' : 'Configuration') ?>
+            <a class="fw-bold navbar-brand d-none d-md-block animate__animated animate__slideInRight" id="titleNavigation" href="<?= ($directory !== 'dashboard' ? 'index.php' : 'dashboard.php') ?>">
+                <img src="content/logo<?= ($directory !== 'dashboard' ? '1.png' : '2.png') ?>" alt="<?= ($directory !== 'dashboard' ? 'Image Gallery Icon' : 'Dashboard Icon') ?>" width="30" height="30" class="d-inline-block align-text-top me-3">
+                <?= ($directory !== 'dashboard' ? 'Image Gallery' : 'Dashboard') ?>
             </a>
 
         </div>

@@ -278,6 +278,7 @@ function displayCalendar()
 
     $daysName = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
     $tabNumberDays = [];
+    (int)$datasDate['minutes'] < 10 ? $datasDate['minutes'] = "0" . $datasDate['minutes'] : $datasDate['minutes'];
 ?>
     <div class='card'>
         <div class='card-header fw-bold h4'>
@@ -353,4 +354,40 @@ function displayCalendar()
 
 <?php
 }
-?>
+
+
+function writeNumberVisitorsByMonth()
+{
+    $date = getdate();
+    $dateMonth = $date['mon'];
+    $month = 0;
+
+    for ($i = 1; $i <= 12; $i++) {
+        ${$month . $i} = "content/data/month" . strval($i) . ".txt";
+        $date = getdate();
+        $dateMonth = $date['mon'];
+
+        if (!file_exists(${$month . $i})) {
+            file_put_contents(${$month . $i}, 0);
+        } else {
+            if ($dateMonth === $i) {
+                $number = file_get_contents(${$month . $i});
+                $file = fopen(${$month . $i}, 'a');
+                ftruncate($file, 0);
+                fwrite($file, (int)$number + 1);
+            }
+        }
+    }
+}
+
+
+
+function getNumberVisitorsByMonth()
+{
+    $month = 0;
+    for ($i = 1; $i <= 12; $i++) {
+        ${$month . $i} = "content/data/month" . strval($i) . ".txt";
+        $number[$i] = file_get_contents(${$month . $i});
+    }
+    return $number;
+}
